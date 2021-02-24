@@ -6,8 +6,6 @@ name: UI - Node.js CI
 on:
   push:
     branches: [ main, dev ]
-    paths:
-      - './**'
 
 jobs:
   build:
