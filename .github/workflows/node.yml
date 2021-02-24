@@ -53,9 +53,10 @@ jobs:
     - name: OpenShift Action
       uses: redhat-developer/openshift-actions@v2.0
       with:
-        # The URL of the Openshift cluster
         openshift_server_url: ${{ secrets.OPENSHIFT_TRAINING_SERVER }}
-        openshift_token: ${{ secrets.OPENSHIFT_TRAINING_TOKEN }} # Oc command to be executed
+        # JSON with values to connect to the Openshift cluster
+        parameters: '{"token": "${{ secrets.OPENSHIFT_TRAINING_TOKEN }}", "acceptUntrustedCerts": "true"}'
+        # Oc command to be executed
         cmd: |
           'version'
           'project mern-training'
