@@ -7,7 +7,7 @@ on:
   push:
     branches: [ main, dev ]
     paths:
-      - 'client/**'
+      - './**'
 
 jobs:
   build:
@@ -48,10 +48,10 @@ jobs:
          podman login quay.io -u ${{ secrets.docker_username }} -p ${{ secrets.docker_password }}
     - name: Build Image using Podman
       run: |
-         podman build ./client/DockerFile -t quay.io/neinnovationorg/mern-training-ui:${{ steps.extract_branch.outputs.branch }}
+         podman build . -t quay.io/neinnovationorg/mern-training-api:${{ steps.extract_branch.outputs.branch }}
     - name: Push Image to Github Registry
       run: |
-          podman push quay.io/neinnovationorg/mern-training-ui:${{ steps.extract_branch.outputs.branch }}
+          podman push quay.io/neinnovationorg/mern-training-api:${{ steps.extract_branch.outputs.branch }}
     - name: OpenShift Action
       uses: redhat-developer/openshift-actions@v2.0
       with:
@@ -61,12 +61,12 @@ jobs:
         cmd: |
           'version'
           'project mern-training'
-          'tag --source=docker quay.io/neinnovationorg/mern-training-ui:${{ steps.extract_branch.outputs.branch }} mern-training/mern-training-ui:${{ steps.extract_branch.outputs.branch }}'
+          'tag --source=docker quay.io/neinnovationorg/mern-training-api:${{ steps.extract_branch.outputs.branch }} mern-training/mern-training-api:${{ steps.extract_branch.outputs.branch }}'
     - name: Scan Image
       uses: Azure/container-scan@v0
       continue-on-error: true
       with:
-        image-name: quay.io/neinnovationorg/mern-training-ui:${{ steps.extract_branch.outputs.branch }}
+        image-name: quay.io/neinnovationorg/mern-training-api:${{ steps.extract_branch.outputs.branch }}
         username: ${{ secrets.docker_username }}
         password: ${{ secrets.docker_password }}
         token: ${{ github.token }}
