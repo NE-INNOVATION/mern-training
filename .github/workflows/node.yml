@@ -49,7 +49,7 @@ jobs:
          podman build . -t quay.io/neinnovationorg/mern-training-server:${{ steps.extract_branch.outputs.branch }}
     - name: Push Image to Github Registry
       run: |
-          podman push quay.io/neinnovationorg/mern-training-sever:${{ steps.extract_branch.outputs.branch }}
+          podman push quay.io/neinnovationorg/mern-training-server:${{ steps.extract_branch.outputs.branch }}
     - name: OpenShift Action
       uses: redhat-developer/openshift-actions@v2.0
       with:
