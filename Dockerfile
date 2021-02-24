@@ -12,7 +12,7 @@ RUN npm ci
 # If you are building your code for production  
 # RUN npm ci
 
-# Bundle app source  
+# Bundle app source
 COPY . .
 
 EXPOSE 8080
