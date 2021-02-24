@@ -51,11 +51,11 @@ jobs:
       run: |
           podman push quay.io/neinnovationorg/mern-training-server:${{ steps.extract_branch.outputs.branch }}
     - name: OpenShift Action
-      uses: redhat-actions/oc-login@v1
+      uses: redhat-developer/openshift-actions@v2.0
       with:
+        # The URL of the Openshift cluster
         openshift_server_url: ${{ secrets.OPENSHIFT_TRAINING_SERVER }}
-        openshift_token: ${{ secrets.OPENSHIFT_TRAINING_TOKEN }}
-        insecure_skip_tls_verify: true
+        openshift_token: ${{ secrets.OPENSHIFT_TRAINING_TOKEN }} # Oc command to be executed
         cmd: |
           'version'
           'project mern-training'
