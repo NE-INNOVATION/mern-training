@@ -13,7 +13,7 @@ RUN npm install
 #### copy things
 COPY . .
 
-#### generate build --prod
+#### generate build --prod 
 RUN npm run build
 
 ### STAGE 2: Run ###
