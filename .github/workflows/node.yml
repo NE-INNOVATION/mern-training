@@ -55,7 +55,7 @@ jobs:
       with:
         openshift_server_url: ${{ secrets.OPENSHIFT_TRAINING_SERVER }}
         # JSON with values to connect to the Openshift cluster
-        parameters: '{"apitoken": "${{ secrets.OPENSHIFT_TRAINING_TOKEN }}", "acceptUntrustedCerts": "true"}'
+        parameters: '{"username": "${{ secrets.OPENSHIFT_USER }}", "acceptUntrustedCerts": "true", "password":"${{ secrets.OPENSHIFT_PASSWORD }}"}'
         # Oc command to be executed
         cmd: |
           'version'
