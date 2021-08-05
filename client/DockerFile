@@ -16,7 +16,7 @@ COPY . .
 #### generate build --prod 
 RUN npm run build
 
-### STAGE 2: Run ###
+### STAGE 2: Run ### 
 FROM nginxinc/nginx-unprivileged
 
 #### copy nginx conf
